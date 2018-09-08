@@ -8,7 +8,7 @@ namespace MinnextWeb.Models.ManageViewModels
 {
     public class TwoFactorAuthenticationViewModel
     {
-        public bool HasAuthenticatorApp { get; set; }
+        public bool HasAuthenticator { get; set; }
 
         public int RecoveryCodesLeft { get; set; }
 
