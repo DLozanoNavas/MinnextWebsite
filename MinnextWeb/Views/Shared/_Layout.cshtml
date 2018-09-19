@@ -12,9 +12,16 @@
     <title>@ViewData["Title"] | Minnext</title>
     <!-- Style CSS -->
     <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
     <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
@@ -24,15 +31,21 @@
     <link rel="stylesheet" href="~/css/styles_mod.css" />
     <!-- Iconos & Fount -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+    <script>
+        $(document).ready(function () {
+            //Active SliderBar
+            $('#@ViewData["NavBarID"]').addClass('active');
+        });
+    </script>
 </head>
 <body>
     <div class="wrapper">
         <!-- Side Bar -->
-        <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="/assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-active-color="blue" data-background-color="black" data-image="/assets/img/sidebar-1.jpg">
             <!-- Logo -->
             <div class="logo">
                 <a href="http://minnext.com/" class="simple-text">
-                    Minnext
+                    <img src="~/images/information/Minnext-web.png" width="200px" />
                 </a>
             </div>
             <div class="logo logo-mini">
@@ -42,193 +55,197 @@
             </div>
             <!-- User & Navegation -->
             <div class="sidebar-wrapper">
-                <div class="user">
+                <!--<div class="user">
                     <div class="photo">
-                        <img src="../assets/img/faces/avatar.jpg" />
+                        <img src="~/images/information/Minnext-web.png" />
                     </div>
-                    <div class="info">
-                        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                            Tania Andrew
-                            <b class="caret"></b>
-                        </a>
-                        <div class="collapse" id="collapseExample">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#">My Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#">Edit Profile</a>
-                                </li>
-                                <li>
-                                    <a href="#">Settings</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
+    <div class="info">
+        <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+            Tania Andrew
+            <b class="caret"></b>
+        </a>
+        <div class="collapse" id="collapseExample">
+            <ul class="nav">
+                <li>
+                    <a href="#">My Profile</a>
+                </li>
+                <li>
+                    <a href="#">Edit Profile</a>
+                </li>
+                <li>
+                    <a href="#">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+                </div>-->
                 <ul class="nav">
-                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Index"><i class="material-icons">dashboard</i><p>Home</p></a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About"><i class="material-icons">about</i><p>About</p></a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact"><i class="material-icons">contact</i><p>Contact</p></a></li>
+                    <li id="Index"><a asp-area="" asp-controller="Home" asp-action="Index"><i class="material-icons">dashboard</i><p>Home</p></a></li>
+                    <li id="Product"><a asp-area="" asp-controller="Product" asp-action=""><i class="material-icons">verified_user</i><p>Dispositivos</p></a></li>
+                    <li id="Documentation"><a asp-area="" asp-controller="Documentation" asp-action=""><i class="material-icons">class</i><p>Documentación</p></a></li>
+                    <li id="About"><a asp-area="" asp-controller="Home" asp-action="About"><i class="material-icons">perm_identity</i><p>About</p></a></li>
+                    <li id="Contact"><a asp-area="" asp-controller="Home" asp-action="Contact"><i class="material-icons">public</i><p>Contact</p></a></li>
                     <!--
+        <li>
+            <a href="dashboard.html">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#pagesExamples">
+                <i class="material-icons">image</i>
+                <p>
+                    Pages
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="pagesExamples">
+                <ul class="nav">
                     <li>
-                        <a href="dashboard.html">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
+                        <a href="pages/pricing.html">Pricing</a>
                     </li>
                     <li>
-                        <a data-toggle="collapse" href="#pagesExamples">
-                            <i class="material-icons">image</i>
-                            <p>
-                                Pages
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="pagesExamples">
-                            <ul class="nav">
-                                <li>
-                                    <a href="pages/pricing.html">Pricing</a>
-                                </li>
-                                <li>
-                                    <a href="pages/timeline.html">Timeline</a>
-                                </li>
-                                <li>
-                                    <a href="pages/login.html">Login Page</a>
-                                </li>
-                                <li>
-                                    <a href="pages/register.html">Register Page</a>
-                                </li>
-                                <li>
-                                    <a href="pages/lock.html">Lock Screen Page</a>
-                                </li>
-                                <li>
-                                    <a href="pages/user.html">User Profile</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="pages/timeline.html">Timeline</a>
                     </li>
                     <li>
-                        <a data-toggle="collapse" href="#componentsExamples">
-                            <i class="material-icons">apps</i>
-                            <p>
-                                Components
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="componentsExamples">
-                            <ul class="nav">
-                                <li>
-                                    <a href="components/buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="components/grid.html">Grid System</a>
-                                </li>
-                                <li>
-                                    <a href="components/panels.html">Panels</a>
-                                </li>
-                                <li>
-                                    <a href="components/sweet-alert.html">Sweet Alert</a>
-                                </li>
-                                <li>
-                                    <a href="components/notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="components/icons.html">Icons</a>
-                                </li>
-                                <li>
-                                    <a href="components/typography.html">Typography</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="pages/login.html">Login Page</a>
                     </li>
                     <li>
-                        <a data-toggle="collapse" href="#formsExamples">
-                            <i class="material-icons">content_paste</i>
-                            <p>
-                                Forms
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="formsExamples">
-                            <ul class="nav">
-                                <li>
-                                    <a href="forms/regular.html">Regular Forms</a>
-                                </li>
-                                <li>
-                                    <a href="forms/extended.html">Extended Forms</a>
-                                </li>
-                                <li>
-                                    <a href="forms/validation.html">Validation Forms</a>
-                                </li>
-                                <li>
-                                    <a href="forms/wizard.html">Wizard</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="pages/register.html">Register Page</a>
                     </li>
                     <li>
-                        <a data-toggle="collapse" href="#tablesExamples">
-                            <i class="material-icons">grid_on</i>
-                            <p>
-                                Tables
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="tablesExamples">
-                            <ul class="nav">
-                                <li>
-                                    <a href="tables/regular.html">Regular Tables</a>
-                                </li>
-                                <li>
-                                    <a href="tables/extended.html">Extended Tables</a>
-                                </li>
-                                <li>
-                                    <a href="tables/datatables.net.html">DataTables.net</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="pages/lock.html">Lock Screen Page</a>
                     </li>
                     <li>
-                        <a data-toggle="collapse" href="#mapsExamples">
-                            <i class="material-icons">place</i>
-                            <p>
-                                Maps
-                                <b class="caret"></b>
-                            </p>
-                        </a>
-                        <div class="collapse" id="mapsExamples">
-                            <ul class="nav">
-                                <li>
-                                    <a href="maps/google.html">Google Maps</a>
-                                </li>
-                                <li>
-                                    <a href="maps/fullscreen.html">Full Screen Map</a>
-                                </li>
-                                <li>
-                                    <a href="maps/vector.html">Vector Map</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="pages/user.html">User Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#componentsExamples">
+                <i class="material-icons">apps</i>
+                <p>
+                    Components
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="componentsExamples">
+                <ul class="nav">
+                    <li>
+                        <a href="components/buttons.html">Buttons</a>
                     </li>
                     <li>
-                        <a href="widgets.html">
-                            <i class="material-icons">widgets</i>
-                            <p>Widgets</p>
-                        </a>
+                        <a href="components/grid.html">Grid System</a>
                     </li>
                     <li>
-                        <a href="charts.html">
-                            <i class="material-icons">timeline</i>
-                            <p>Charts</p>
-                        </a>
+                        <a href="components/panels.html">Panels</a>
                     </li>
                     <li>
-                        <a href="calendar.html">
-                            <i class="material-icons">date_range</i>
-                            <p>Calendar</p>
-                        </a>
-                    </li>-->
+                        <a href="components/sweet-alert.html">Sweet Alert</a>
+                    </li>
+                    <li>
+                        <a href="components/notifications.html">Notifications</a>
+                    </li>
+                    <li>
+                        <a href="components/icons.html">Icons</a>
+                    </li>
+                    <li>
+                        <a href="components/typography.html">Typography</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#formsExamples">
+                <i class="material-icons">content_paste</i>
+                <p>
+                    Forms
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="formsExamples">
+                <ul class="nav">
+                    <li>
+                        <a href="forms/regular.html">Regular Forms</a>
+                    </li>
+                    <li>
+                        <a href="forms/extended.html">Extended Forms</a>
+                    </li>
+                    <li>
+                        <a href="forms/validation.html">Validation Forms</a>
+                    </li>
+                    <li>
+                        <a href="forms/wizard.html">Wizard</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#tablesExamples">
+                <i class="material-icons">grid_on</i>
+                <p>
+                    Tables
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="tablesExamples">
+                <ul class="nav">
+                    <li>
+                        <a href="tables/regular.html">Regular Tables</a>
+                    </li>
+                    <li>
+                        <a href="tables/extended.html">Extended Tables</a>
+                    </li>
+                    <li>
+                        <a href="tables/datatables.net.html">DataTables.net</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a data-toggle="collapse" href="#mapsExamples">
+                <i class="material-icons">place</i>
+                <p>
+                    Maps
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="mapsExamples">
+                <ul class="nav">
+                    <li>
+                        <a href="maps/google.html">Google Maps</a>
+                    </li>
+                    <li>
+                        <a href="maps/fullscreen.html">Full Screen Map</a>
+                    </li>
+                    <li>
+                        <a href="maps/vector.html">Vector Map</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <a href="widgets.html">
+                <i class="material-icons">widgets</i>
+                <p>Widgets</p>
+            </a>
+        </li>
+        <li>
+            <a href="charts.html">
+                <i class="material-icons">timeline</i>
+                <p>Charts</p>
+            </a>
+        </li>
+        <li>
+            <a href="calendar.html">
+                <i class="material-icons">date_range</i>
+                <p>Calendar</p>
+            </a>
+        </li>-->
                 </ul>
             </div>
             <!-- Login Register/Sign UP //Revisar
@@ -314,21 +331,20 @@
             <!-- Start Content -->
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @if (ViewData["WithCard"] == null)
-                            {
+                    @if (ViewData["WithCard"] == null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="card">
                                     @RenderBody()
                                 </div>
-                            }
-                            else
-                            {
-                                @RenderBody()
-                            }
+                            </div>
                         </div>
-
-                    </div>
+                    }
+                    else
+                    {
+                        @RenderBody()
+                    }
                 </div>
             </div>
             <footer class="footer">
@@ -370,16 +386,9 @@
     </div>
     <!-- Pluggin -->
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     </environment>
     <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
