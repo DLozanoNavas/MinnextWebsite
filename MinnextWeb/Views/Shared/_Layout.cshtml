@@ -13,22 +13,17 @@
     <!-- Style CSS -->
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/material-dashboard.css" />
-        <link rel="stylesheet" href="~/css/styles.css" />
-        <link rel="stylesheet" href="~/css/styles_mod.css" />
-        <!-- Iconos & Fount -->
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/material-dashboard.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/styles.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/styles_mod.min.css" asp-append-version="true" />
-        <!-- Icons & Fount -->
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
     </environment>
+    <link rel="stylesheet" href="~/css/material-dashboard.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/styles_mod.css" />
+    <!-- Iconos & Fount -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 </head>
 <body>
     <div class="wrapper">
@@ -321,9 +316,16 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            @if (ViewData["WithCard"] == null)
+                            {
+                                <div class="card">
+                                    @RenderBody()
+                                </div>
+                            }
+                            else
+                            {
                                 @RenderBody()
-                            </div>
+                            }
                         </div>
 
                     </div>
