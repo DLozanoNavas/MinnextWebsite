@@ -29,19 +29,15 @@ namespace MinnextWeb
 
 
             // Use SQL Database if in Azure, otherwise, use SQLite
-            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-            {
-                services.AddDbContext<ApplicationDbContext>(options =>
-                        options.UseSqlServer(Configuration.GetConnectionString("AzureSQLDB")));
-                services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
-            }
-            else
-                services.AddDbContext<ApplicationDbContext>(options =>
-                   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("AzureSQLDB")));
+            services.BuildServiceProvider().GetService<ApplicationDbContext>().Database.Migrate();
+
 
             // Automatically perform database migration
 
-            
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
